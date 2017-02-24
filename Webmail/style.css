@@ -1,5 +1,13 @@
-﻿.spacer {
+﻿a {
+  cursor: pointer;
+}
+
+.spacer {
 	margin-top: 20px;
+}
+
+.hspacer {
+  margin-left: 20px;
 }
 
 .table-hover > tbody > tr:hover > td,
@@ -16,4 +24,24 @@
   background-color: #ffffff;
   padding: 15px;
   border-radius: 2px;
+}
+
+.colFrom {
+  width: 20%;
+}
+
+.colTo {
+  width: 15%;
+}
+
+.colSubject {
+  width: 45%;
+}
+
+.colDate {
+  width: 20%;
+}
+
+.highlightingSearch {
+  background-color: #FFD42A;
 }
