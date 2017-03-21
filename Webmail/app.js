@@ -23,12 +23,16 @@ myApp.controller("WebmailCtrl", function($scope, $location, $filter) {
     ] }
   ];
 
+  $scope.nextMailId = 12;
   $scope.currentRepository = null;
   $scope.selectedEmail = null;
 
   $scope.repositorySelection = function(repository){
     $scope.currentRepository = repository;
     $scope.selectedEmail = null;
+    if (repository) {
+      $scope.newMail = null;
+    }
   }
 
   $scope.emailSelection = function(email){
@@ -59,11 +63,38 @@ myApp.controller("WebmailCtrl", function($scope, $location, $filter) {
     $scope.search = "";
   }
 
+  // Email Creation
+  $scope.newMail = null;
+
+  $scope.removeNewMail = function(){
+    $scope.newMail = {
+      from: "Rudy",
+      date: new Date()
+    };
+  }
+
+  $scope.sendEmail = function(){
+    $scope.repositories.forEach(function(item) {
+      if (item.value == "ENVOYES") {
+        $scope.newMail.id = $scope.nextMailId;
+        item.emails.push($scope.newMail);
+        $scope.newMail = null;
+        $location.path("/");
+      }
+    })
+  }
+
+
+  // Navigation
   $scope.$watch(function() {
     return $location.path();
   }, function(newPath){
     var arrayPath = newPath.split("/");
     if (arrayPath.length > 1) {
+      if (arrayPath[1] == "newMail"){
+        $scope.removeNewMail();
+        $scope.repositorySelection(null);
+      }
       var repositoryValue = arrayPath[1];
       $scope.repositories.forEach(function(item) {
         if (item.value == repositoryValue) {

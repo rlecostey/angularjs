@@ -45,3 +45,15 @@
 .highlightingSearch {
   background-color: #FFD42A;
 }
+
+.labelNewMail {
+  width: 70px;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.newMailContent {
+  width: 100%;
+}

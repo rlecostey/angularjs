@@ -1,0 +1,193 @@
+.form-horizontal .control-label {
+  text-align: left !important; /* !important added for priority in SO snippet. */
+}
+
+body#sevenart {
+  background-color: #F8F8FA;
+}
+
+.spacer {
+  padding-top: 50px;
+}
+
+.wSpacer {
+  margin-right: 15%;
+}
+
+.header {
+  background-color: #000;
+  height: 20%;
+}
+
+.nav-center {
+text-align: center;
+  }
+
+
+.film-category {
+  position: relative;
+  background-color: lightgrey;
+  text-align: center;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  width: 185px;
+}
+
+.film-poster img{
+  position: relative;
+}
+
+.film-note{
+  position: absolute;
+  background-color: orange;
+  text-align: center;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 185px;
+}
+
+
+.card {
+  height: 150px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: white;
+  position: relative;
+  border-radius: 5px;
+  margin: 35px;
+  box-shadow: 1px 1px 2px #e7e7e7;
+}
+
+.card-poster {
+  height: 200px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: white;
+  position: relative;
+  border-radius: 5px;
+  margin: 15px;
+  box-shadow: 1px 1px 2px #e7e7e7;
+}
+
+.card-category {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.card-description h2 {
+  font-size: 24px;
+}
+
+.card-description p {
+  font-size: 13px;
+  color: #FFBF00;
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover{
+  opacity: 0.1;
+}
+
+.glyphicon-star{
+  color: #FFBF00;
+}
+
+.removeFilmDescription-icon{
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.removeFilmDescription-icon:hover{
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  padding: 10px;
+  color: #C9302C;
+  text-decoration: none;
+}
+
+
+.film-description-card {
+  height: 350px;
+  width: 100%;
+  position: relative;
+  box-shadow: 1px 1px 2px #e7e7e7;
+  background-color: #ddd;
+}
+
+.film-description-card a{
+  position: absolute;
+  top: 10px;
+  left: 25px;
+}
+
+.film-description-card img{
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  height: 220px;
+  opacity: 0.6;
+
+}
+
+.film-description-card-info {
+  position: absolute;
+  top: 20px;
+  left: 5%;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+
+.film-description-card-synopsis {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  font-size: 10px;
+  width: 80%;
+  font-size: 16px;
+}
+
+.film-description-card-form {
+  position: absolute;
+  bottom: 0px;
+  left: 5%;
+  font-size: 10px;
+  width: 80%;
+  font-size: 16px;
+  padding: 10px;
+}
+
+
+.footer {
+  background-color: #333;
+}
+
+.footer p {
+  padding: 100px;
+  text-align: center;
+  color: white;
+  margin-bottom: -5px;
+  margin-top: 70px;
+}
+
+

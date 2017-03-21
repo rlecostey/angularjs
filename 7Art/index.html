@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sevenArt">
+<head>
+  <meta charset="UTF-8">
+  <title>7Art</title>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body id="sevenart">
+
+  <div class="header">
+    <img class="img-responsive center-block"  src="logo.jpg" alt="">
+  </div>
+  <section ng-init="tab = 1" ng-controller="MenuController as menu" >
+    <div class="container">
+      <div class="row">
+        <div class="navbar spacer col-sm-offset-3">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active:menu.currentTab === 1 }" class="text-center wSpacer"><a href="#" ng-click="menu.tabSelection(1)">WhishList</a></li>
+            <li ng-class="{ active:menu.currentTab === 2 }" class="text-center wSpacer"><a href="#" ng-click="menu.tabSelection(2)">Recently Viewed</a></li>
+            <li ng-class="{ active:menu.currentTab === 3 }" class="text-center wSpacer"><a href="#" ng-click="menu.tabSelection(3)">Search Film</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper" ng-show="menu.currentTab === 1" ng-controller="WhishListController as whishlist">
+      <div class="container">
+        <div class="row">
+          <h2>Recommanded for you</h2>
+          <div ng-repeat="guestFilm in whishlist.guestFilms | limitTo:3" class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url({{guestFilm.backdrop}});">
+              <div class="card-category">{{guestFilm.category}}</div>
+                <div class="card-description">
+                  <h2>{{guestFilm.title}}</h2>
+                </div>
+                <a ng-click="whishlist.filmSelection(guestFilm, 1)" class="card-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-film-description" ng-show="whishlist.showFilmDescription === 1">
+        <div class="film-description-card">
+          <img class="film-description-card-poster" src={{whishlist.currentFilm.poster}} alt="">
+          <a class="glyphicon glyphicon-remove removeFilmDescription-icon" ng-click="whishlist.resetSelection()"></a>
+          <div class="film-description-card-info">
+           <h3 class="film-description-card-title"><strong>{{whishlist.currentFilm.title}}</strong></h3>
+            <p class="film-description-card-category">{{whishlist.currentFilm.category}}</p>
+          </div>
+          <p class="film-description-card-synopsis">{{whishlist.currentFilm.synopsis}}</p>
+          <div class="film-description-card-form">
+            <button class="btn btn-success">Add to Whish List</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <hr>
+        <div class="row">
+          <h2>Recently added</h2>
+          <div ng-repeat="film in whishlist.films | reverse | limitTo:3" class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url({{film.backdrop}});">
+              <div class="card-category">{{film.category}}</div>
+                <div class="card-description">
+                  <h2>{{film.title}}</h2>
+                </div>
+                <a ng-click="whishlist.filmSelection(film, 2)" class="card-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-film-description" ng-show="whishlist.showFilmDescription === 2">
+        <div class="film-description-card" >
+          <img class="film-description-card-poster" src={{whishlist.currentFilm.poster}} alt="">
+          <a class="glyphicon glyphicon-remove removeFilmDescription-icon" ng-click="whishlist.resetSelection()"></a>
+          <div class="film-description-card-info">
+            <h3 class="film-description-card-title"><strong>{{whishlist.currentFilm.title}}</strong></h3>
+            <p class="film-description-card-category">{{whishlist.currentFilm.category}}</p>
+          </div>
+          <p class="film-description-card-synopsis">{{whishlist.currentFilm.synopsis}}</p>
+          <div class="film-description-card-form">
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label class="col-xs-2 control-label">Note :</label>
+                <div class="col-xs-2">
+                  <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-success">Add to Viewed List</button>
+            <button class="btn btn-danger">Remove from Whish List</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <hr>
+        <div class="row">
+          <h2>Full list</h2>
+          <div ng-repeat="film in whishlist.films | reverse" class="col-xs-6 col-sm-2">
+            <div class="card-poster" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url({{film.poster}});">
+              <a ng-click="whishlist.filmSelection(film, 3)" class="card-link" ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-film-description" ng-show="whishlist.showFilmDescription === 3">
+        <div class="film-description-card" >
+          <img class="film-description-card-poster" src={{whishlist.currentFilm.poster}} alt="">
+          <a class="glyphicon glyphicon-remove removeFilmDescription-icon" ng-click="whishlist.resetSelection()"></a>
+          <div class="film-description-card-info">
+            <h3 class="film-description-card-title"><strong>{{whishlist.currentFilm.title}}</strong></h3>
+            <p class="film-description-card-category">{{whishlist.currentFilm.category}}</p>
+          </div>
+          <p class="film-description-card-synopsis">{{whishlist.currentFilm.synopsis}}</p>
+          <div class="film-description-card-form">
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label class="col-xs-2 control-label">Note :</label>
+                <div class="col-xs-2">
+                  <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-success">Add to Viewed List</button>
+            <button class="btn btn-danger">Remove from Whish List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper" ng-show="menu.currentTab === 2" ng-controller="ViewedListController as viewedlist">
+      <div class="container">
+        <div class="row">
+          <h2>Recently viewed</h2>
+          <div ng-repeat="film in viewedlist.films | reverse | limitTo:3" class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url({{film.backdrop}});">
+              <div class="card-category">{{film.category}}</div>
+                <div class="card-description">
+                  <h2>{{film.title}}</h2>
+                  <span ng-repeat='star in viewedlist.getArrayNumber(film.note)'>
+                    <span class="glyphicon glyphicon-star"></span>
+                  </span>
+                </div>
+                <a ng-click="viewedlist.filmSelection(film, 1)" class="card-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-film-description" ng-show="viewedlist.showFilmDescription === 1">
+        <div class="film-description-card" >
+          <img class="film-description-card-poster" src={{viewedlist.currentFilm.poster}} alt="">
+          <a class="glyphicon glyphicon-remove removeFilmDescription-icon" ng-click="viewedlist.resetSelection()"></a>
+          <div class="film-description-card-info">
+            <h3 class="film-description-card-title"><strong>{{viewedlist.currentFilm.title}}</strong></h3>
+            <p class="film-description-card-category">{{viewedlist.currentFilm.category}}</p>
+            <span ng-repeat='star in viewedlist.getArrayNumber(viewedlist.currentFilm.note)'>
+              <span class="glyphicon glyphicon-star"></span>
+            </span>
+          </div>
+          <p class="film-description-card-synopsis">{{viewedlist.currentFilm.synopsis}}</p>
+          <div class="film-description-card-form">
+            <button class="btn btn-danger">Remove from Viewed List</button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <h2>Full list</h2>
+          <div ng-repeat="film in viewedlist.films | reverse" class="col-xs-6 col-sm-2">
+            <div class="card-poster" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url({{film.poster}});">
+              <a ng-click="viewedlist.filmSelection(film, 2)" class="card-link"></a>
+              <div class="card-category">{{film.category}}</div>
+              <div class="card-description">
+                <span ng-repeat='star in viewedlist.getArrayNumber(film.note)'>
+                  <span class="glyphicon glyphicon-star"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-film-description" ng-show="viewedlist.showFilmDescription === 2">
+        <div class="film-description-card" >
+          <img class="film-description-card-poster" src={{viewedlist.currentFilm.poster}} alt="">
+          <a class="glyphicon glyphicon-remove removeFilmDescription-icon" ng-click="viewedlist.resetSelection()"></a>
+          <div class="film-description-card-info">
+            <h3 class="film-description-card-title"><strong>{{viewedlist.currentFilm.title}}</strong></h3>
+            <p class="film-description-card-category">{{viewedlist.currentFilm.category}}</p>
+            <span ng-repeat='star in viewedlist.getArrayNumber(viewedlist.currentFilm.note)'>
+              <span class="glyphicon glyphicon-star"></span>
+            </span>
+          </div>
+          <p class="film-description-card-synopsis">{{viewedlist.currentFilm.synopsis}}</p>
+          <div class="film-description-card-form">
+            <button class="btn btn-danger">Remove from Viewed List</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper" ng-show="menu.currentTab === 3">
+      <div class="container" ng-controller="SearchController as search">
+        <div class="spacer input-group">
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+          </div>
+          <input type="text" ng-model="search" class="form-control" placeholder="Recherche un film ...">
+          <div class="input-group-btn">
+            <button class="btn btn-default" ng-click="removeSearchField()">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <div class="footer">
+    <p>Project realised with AngularJS and The Movie Database API</p>
+  </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+  <script type="text/javascript" src="Vibrant.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

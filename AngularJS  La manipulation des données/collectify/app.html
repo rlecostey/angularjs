@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="bower_components/angular_route/angular_route.js"></script>
+        <script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+        <script type="text/javascript" src="bower_components/angularfire/dist/angularfire.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="routing.js"></script>
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <!-- Services -->
+        <script type="text/javascript" src="src/services/itemProvider.js"></script>
+        <script type="text/javascript" src="src/services/categoryProvider.js"></script>
+        <script type="text/javascript" src="src/services/firebaseApp.js"></script>
+        <script type="text/javascript" src="src/services/firebaseUser.js"></script>
+        <script type="text/javascript" src="src/services/userProvider.js"></script>
+
+        <!-- Directives -->
+        <script type="text/javascript" src="src/directives/decoratorDirective.js"></script>
+
+        <!-- Controllers -->
+        <script type="text/javascript" src="src/controllers/categoryController.js"></script>
+        <script type="text/javascript" src="src/controllers/itemController.js"></script>
+        <script type="text/javascript" src="src/controllers/indexController.js"></script>
+
+    </head>
+    <body ng-app="collectify">
+      <div class="container">
+        <div ng-view></div>
+      </div>
+    </body>
+</html>
