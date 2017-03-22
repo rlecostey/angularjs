@@ -108,7 +108,7 @@
 
             <div class="spacer text-center">
               <button class="btn btn-success" ng-click="sendEmail()">Envoyer Email</button>
-              <button class="btn btn-warning" ng-click="removeNewMail()">Supprimer la saisie</button>
+              <button class="btn btn-warning" ng-disabled="newMailForm.$pristine" ng-click="removeNewMail()">Supprimer la saisie</button>
             </div>
           </form>
         </div>

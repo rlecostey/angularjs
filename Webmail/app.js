@@ -53,7 +53,6 @@ myApp.controller("WebmailCtrl", function($scope, $location, $filter) {
       $scope.sortingColumn = column;
       $scope.sortingDsc = false;
     }
-
   }
 
 
@@ -71,9 +70,24 @@ myApp.controller("WebmailCtrl", function($scope, $location, $filter) {
       from: "Rudy",
       date: new Date()
     };
+    $scope.newMailForm.$setPristine();
   }
 
   $scope.sendEmail = function(){
+
+    var regExpValidEmail = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$", "gi");
+
+    if(!$scope.newMail.to || !$scope.newMail.to.match(regExpValidEmail)) {
+      window.alert("Erreur\n\nMerci de vérifier l'adresse e-mail saisie.");
+      return
+    }
+
+    if(!$scope.newMail.subject) {
+      if (!window.confirm("Confirmation\n\nÊtes-vous certain de vouloir envoyer un mail sans objet ?")) {
+        return;
+      }
+    }
+
     $scope.repositories.forEach(function(item) {
       if (item.value == "ENVOYES") {
         $scope.newMail.id = $scope.nextMailId;
